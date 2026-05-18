@@ -4,7 +4,7 @@ from market import is_paid_polygon, is_realtime_polygon
 
 load_dotenv(override=True)
 
-brave_env = {"BRAVE_API_KEY": os.getenv("BRAVE_API_KEY")}
+tavily_env = {"TAVILY_API_KEY": os.getenv("TAVILY_API_KEY"),"DEFAULT_PARAMETERS": "{\"include_images\": false, \"max_results\": 4, \"search_depth\": \"advanced\"}"}
 polygon_api_key = os.getenv("POLYGON_API_KEY")
 
 # The MCP server for the Trader to read Market Data
@@ -33,10 +33,14 @@ trader_mcp_server_params = [
 def researcher_mcp_server_params(name: str):
     return [
         {"command": "uvx", "args": ["mcp-server-fetch"]},
+ #       {
+ #           "command": "npx",
+ #           "args": ["-y", "tavily-mcp@latest"],
+ #           "env": tavily_env,
+ #       },
         {
             "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-brave-search"],
-            "env": brave_env,
+            "args": ["@playwright/mcp@latest"]
         },
         {
             "command": "npx",

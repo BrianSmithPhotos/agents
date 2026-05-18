@@ -11,7 +11,7 @@ def run():
     Run the research crew.
     """
     inputs = {
-        'company': 'Apple'
+        'company': 'Sherritt'
     }
 
     # Create and run the crew
@@ -21,7 +21,7 @@ def run():
     print("\n\n=== FINAL REPORT ===\n\n")
     print(result.raw)
 
-    print("\n\nReport has been saved to output/report.md")
+    print(f"\n\nReport has been saved to output/report.md")
 
 if __name__ == "__main__":
     run()
